@@ -112,7 +112,7 @@ function Index() {
               <Button variant="vittara" size="cta" asChild><a href="#contato">Agendar avaliação <ArrowRight /></a></Button>
               <Button variant="vittaraOutline" size="cta" asChild><a href="#tratamentos">Conhecer tratamentos</a></Button>
             </div>
-            <div className="mt-8 flex max-w-2xl flex-wrap gap-x-5 gap-y-2 text-[0.64rem] font-medium uppercase text-rose-deep/75">
+            <div className="mt-8 grid max-w-2xl gap-x-5 gap-y-2 text-[0.61rem] font-medium uppercase text-rose-deep/75 sm:flex sm:flex-wrap sm:text-[0.64rem]">
               {['Atendimento personalizado', 'Estética avançada', 'Resultados naturais'].map((item) => <span key={item} className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" />{item}</span>)}
             </div>
           </div>
