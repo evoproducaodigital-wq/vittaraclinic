@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -13,6 +14,7 @@ import {
   ScanFace,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -70,10 +72,44 @@ function SectionTitle({ eyebrow, title, centered = false }: { eyebrow: string; t
 }
 
 function Index() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 24);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <main className="bg-background text-foreground">
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-primary-foreground/25">
-        <div className="mx-auto grid h-24 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 sm:px-8">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ${
+          isScrolled
+            ? "border-border/80 bg-card/95 shadow-[var(--shadow-header)]"
+            : "border-border/45 bg-card/75"
+        }`}
+      >
+        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 sm:h-24 sm:px-8">
           <a href="#inicio" className="flex min-w-0 items-center" aria-label="Vittara — início">
             <img src={logoAsset.url} alt="Vittara Estética Avançada" className="h-11 w-auto max-w-48 object-contain mix-blend-multiply sm:h-12 sm:max-w-56" />
           </a>
@@ -83,16 +119,30 @@ function Index() {
             <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
             <Button variant="vittara" size="cta" asChild><a href="#contato">Agendar avaliação</a></Button>
           </nav>
-          <details className="group relative lg:hidden">
-            <summary className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full border border-primary/35 text-primary [&::-webkit-details-marker]:hidden" aria-label="Abrir menu"><Menu className="h-5 w-5" /></summary>
-            <nav className="absolute right-0 mt-3 flex w-56 flex-col gap-1 rounded-lg bg-card p-3 text-sm shadow-[var(--shadow-soft)]" aria-label="Navegação móvel">
-              <a href="#sobre" className="rounded-md px-4 py-3 hover:bg-muted">A Vittara</a>
-              <a href="#tratamentos" className="rounded-md px-4 py-3 hover:bg-muted">Tratamentos</a>
-              <a href="#metodo" className="rounded-md px-4 py-3 hover:bg-muted">Método Vittara</a>
-              <a href="#contato" className="rounded-md bg-primary px-4 py-3 text-primary-foreground">Agendar avaliação</a>
-            </nav>
-          </details>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-11 w-11 shrink-0 rounded-full border border-primary/35 text-primary hover:bg-muted lg:hidden"
+            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="menu-mobile"
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
+        {isMenuOpen && (
+          <div id="menu-mobile" className="fixed inset-x-0 bottom-0 top-20 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+            <button type="button" className="absolute inset-0 bg-rose-deep/20 backdrop-blur-sm" aria-label="Fechar menu" onClick={closeMenu} />
+            <nav className="relative border-t border-border bg-card px-5 pb-7 pt-3 shadow-[var(--shadow-soft)]" aria-label="Navegação móvel">
+              <a href="#sobre" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">A Vittara</a>
+              <a href="#tratamentos" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Tratamentos</a>
+              <a href="#metodo" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Método Vittara</a>
+              <Button variant="vittara" size="cta" className="mt-5 w-full" asChild><a href="#contato" onClick={closeMenu}>Agendar avaliação <ArrowRight /></a></Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section id="inicio" className="relative min-h-[760px] overflow-hidden bg-rose-wash pt-24 lg:min-h-[820px]">
@@ -119,7 +169,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="sobre" className="relative overflow-hidden py-24 sm:py-32">
+      <section id="sobre" className="relative scroll-mt-20 overflow-hidden py-24 sm:scroll-mt-24 sm:py-32">
         <div className="absolute -right-20 top-10 h-72 w-72 rounded-full border border-copper/15" />
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
           <SectionTitle eyebrow="Sobre a Vittara" title="Cuidado estético com técnica, sensibilidade e propósito" />
@@ -145,7 +195,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="tratamentos" className="py-24 sm:py-32">
+      <section id="tratamentos" className="scroll-mt-20 py-24 sm:scroll-mt-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
             <SectionTitle eyebrow="Tratamentos" title="Soluções que realçam sua melhor versão" />
@@ -180,7 +230,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="metodo" className="py-24 sm:py-32">
+      <section id="metodo" className="scroll-mt-20 py-24 sm:scroll-mt-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionTitle eyebrow="Método Vittara" title="Como funciona sua jornada na Vittara" centered />
           <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
@@ -223,7 +273,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="contato" className="paper-texture bg-rose-wash py-24 sm:py-32">
+      <section id="contato" className="paper-texture scroll-mt-20 bg-rose-wash py-24 sm:scroll-mt-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <CalendarDays strokeWidth={1.25} className="mx-auto h-10 w-10 text-primary" />
           <h2 className="mt-7 text-4xl leading-tight text-rose-deep sm:text-6xl">Agende sua avaliação e descubra o melhor protocolo para você</h2>
