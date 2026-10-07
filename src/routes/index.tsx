@@ -6,11 +6,13 @@ import {
   CalendarDays,
   Check,
   ChevronRight,
+  GraduationCap,
   Instagram,
   MapPin,
   Menu,
   MessageCircle,
   Microscope,
+  Phone,
   ScanFace,
   ShieldCheck,
   Sparkles,
@@ -36,6 +38,12 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+const whatsappUrl = "https://wa.me/5551997051276";
+const instagramUrl = "https://www.instagram.com/vittara.clinic/";
+const academyUrl = "https://www.vittaraacademy.com.br/";
+const clinicAddress = "Dr. Nilo Peçanha, 1851 - Lj 1 - Boa Vista, Porto Alegre - RS, 91330-000";
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(clinicAddress)}`;
 
 const treatments = [
   ["Botox", "Suaviza linhas de expressão e ajuda a prevenir marcas profundas."],
@@ -117,7 +125,7 @@ function Index() {
             <a href="#sobre" className="transition-colors hover:text-primary">A Vittara</a>
             <a href="#tratamentos" className="transition-colors hover:text-primary">Tratamentos</a>
             <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
-            <Button variant="vittara" size="cta" asChild><a href="#contato">Agendar avaliação</a></Button>
+            <Button variant="vittara" size="cta" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Agendar avaliação</a></Button>
           </nav>
           <Button
             type="button"
@@ -139,7 +147,7 @@ function Index() {
               <a href="#sobre" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">A Vittara</a>
               <a href="#tratamentos" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Tratamentos</a>
               <a href="#metodo" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Método Vittara</a>
-              <Button variant="vittara" size="cta" className="mt-5 w-full" asChild><a href="#contato" onClick={closeMenu}>Agendar avaliação <ArrowRight /></a></Button>
+              <Button variant="vittara" size="cta" className="mt-5 w-full" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Agendar avaliação <ArrowRight /></a></Button>
             </nav>
           </div>
         )}
@@ -159,7 +167,7 @@ function Index() {
             </h1>
             <p className="mt-7 max-w-xl text-sm leading-7 text-foreground/80 sm:text-base">Estética avançada com planejamento, tecnologia e naturalidade para valorizar seus traços com equilíbrio e segurança.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button variant="vittara" size="cta" asChild><a href="#contato">Agendar avaliação <ArrowRight /></a></Button>
+              <Button variant="vittara" size="cta" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Agendar avaliação <ArrowRight /></a></Button>
               <Button variant="vittaraOutline" size="cta" asChild><a href="#tratamentos">Conhecer tratamentos</a></Button>
             </div>
             <div className="mt-8 grid max-w-2xl gap-x-5 gap-y-2 text-[0.61rem] font-medium uppercase text-rose-deep/75 sm:flex sm:flex-wrap sm:text-[0.64rem]">
@@ -207,7 +215,7 @@ function Index() {
                 <span className="text-xs text-primary">{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="mt-8 text-2xl leading-tight text-rose-deep">{title}</h3>
                 <p className="mt-4 flex-1 text-sm leading-6 text-muted-foreground">{text}</p>
-                <a href="#contato" className="mt-7 flex items-center gap-2 text-[0.68rem] font-semibold uppercase text-primary">Saiba mais <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label={`Saiba mais sobre ${title} pelo WhatsApp`} className="mt-7 flex items-center gap-2 text-[0.68rem] font-semibold uppercase text-primary">Saiba mais <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
               </article>
             ))}
           </div>
@@ -223,7 +231,7 @@ function Index() {
               <h2 className="text-4xl leading-tight text-rose-deep sm:text-6xl">Protocolo Coreano <em className="font-normal text-primary">com PDRN</em></h2>
               <p className="mt-6 text-lg leading-8 text-rose-deep">Uma experiência regenerativa inspirada nos cuidados coreanos para uma pele mais luminosa, viçosa e revitalizada.</p>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">O protocolo combina ativos biotecnológicos, microagulhamento de alta precisão, drug delivery e fotobiomodulação para auxiliar na melhora da textura, viço, hidratação e qualidade global da pele.</p>
-              <Button variant="vittara" size="cta" className="mt-8" asChild><a href="#contato">Quero conhecer o protocolo <ArrowRight /></a></Button>
+              <Button variant="vittara" size="cta" className="mt-8" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Quero conhecer o protocolo <ArrowRight /></a></Button>
               <p className="mt-5 text-xs text-muted-foreground">A indicação depende de avaliação individualizada.</p>
             </div>
           </div>
@@ -273,14 +281,25 @@ function Index() {
         </div>
       </section>
 
+      <section aria-labelledby="academy-title" className="border-y border-border bg-background py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-16">
+          <div className="max-w-2xl">
+            <p className="mb-4 flex items-center gap-3 text-[0.68rem] font-semibold uppercase text-primary"><GraduationCap strokeWidth={1.25} className="h-6 w-6" /> Vittara Academy</p>
+            <h2 id="academy-title" className="text-4xl leading-tight text-rose-deep sm:text-5xl">Conheça a Vittara Academy</h2>
+            <p className="mt-5 text-sm leading-7 text-muted-foreground">O cuidado com a beleza também inspira conhecimento. Descubra a Vittara Academy e conheça suas oportunidades de aprendizado.</p>
+          </div>
+          <Button variant="vittaraOutline" size="cta" className="w-full sm:w-fit" asChild><a href={academyUrl} target="_blank" rel="noopener noreferrer">Conhecer a Academy <ArrowRight /></a></Button>
+        </div>
+      </section>
+
       <section id="contato" className="paper-texture scroll-mt-20 bg-rose-wash py-24 sm:scroll-mt-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <CalendarDays strokeWidth={1.25} className="mx-auto h-10 w-10 text-primary" />
           <h2 className="mt-7 text-4xl leading-tight text-rose-deep sm:text-6xl">Agende sua avaliação e descubra o melhor protocolo para você</h2>
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-muted-foreground">Cada pele, rosto e objetivo merecem uma indicação personalizada. Converse com a equipe da Vittara e dê o primeiro passo para cuidar de você com mais segurança e estratégia.</p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button variant="vittara" size="cta" asChild><a href="#dados-contato"><MessageCircle /> Agendar pelo WhatsApp</a></Button>
-            <Button variant="vittaraOutline" size="cta" asChild><a href="#dados-contato"><MapPin /> Ver localização</a></Button>
+            <Button variant="vittara" size="cta" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle /> Agendar pelo WhatsApp</a></Button>
+            <Button variant="vittaraOutline" size="cta" asChild><a href={mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin /> Ver localização</a></Button>
           </div>
         </div>
       </section>
@@ -292,11 +311,13 @@ function Index() {
             <p className="mt-2 text-[0.6rem] uppercase text-primary-foreground/60">Estética Avançada</p>
           </div>
           <div className="space-y-3 text-sm text-primary-foreground/70">
-            <p className="flex items-center gap-3"><Instagram className="h-4 w-4" /> Instagram — a confirmar</p>
-            <p className="flex items-center gap-3"><MessageCircle className="h-4 w-4" /> WhatsApp — a confirmar</p>
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary-foreground"><Instagram className="h-4 w-4 shrink-0" /> @vittara.clinic</a>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary-foreground"><MessageCircle className="h-4 w-4 shrink-0" /> WhatsApp · (51) 99705-1276</a>
+            <a href="tel:+5551997051276" className="flex items-center gap-3 transition-colors hover:text-primary-foreground"><Phone className="h-4 w-4 shrink-0" /> Telefone · (51) 99705-1276</a>
+            <a href={academyUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary-foreground"><GraduationCap className="h-4 w-4 shrink-0" /> Vittara Academy <ArrowRight className="h-4 w-4 shrink-0" /></a>
           </div>
           <div className="space-y-3 text-sm text-primary-foreground/70">
-            <p>Endereço — a confirmar</p>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 leading-6 transition-colors hover:text-primary-foreground"><MapPin className="mt-1 h-4 w-4 shrink-0" /><span>{clinicAddress}</span></a>
             <p>Horário de atendimento — a confirmar</p>
           </div>
         </div>
@@ -305,7 +326,7 @@ function Index() {
         </div>
       </footer>
 
-      <a href="#contato" aria-label="Agendar pelo WhatsApp" className="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-button)] transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle className="h-6 w-6" /></a>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp" className="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-button)] transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle className="h-6 w-6" /></a>
     </main>
   );
 }
