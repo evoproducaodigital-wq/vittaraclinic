@@ -41,7 +41,7 @@ export const Route = createFileRoute("/")({
 
 const whatsappUrl = "https://wa.me/5551997051276";
 const instagramUrl = "https://www.instagram.com/vittara.clinic/";
-const academyUrl = "https://www.vittaraacademy.com.br/";
+const academyUrl = "http://vittaraacademy.com.br/";
 const clinicAddress = "Dr. Nilo Peçanha, 1851 - Lj 1 - Boa Vista, Porto Alegre - RS, 91330-000";
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(clinicAddress)}`;
 
@@ -117,16 +117,18 @@ function Index() {
             : "border-border/45 bg-card/75"
         }`}
       >
-        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 sm:h-24 sm:px-8">
+        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 px-5 sm:h-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto]">
           <a href="#inicio" className="flex min-w-0 items-center" aria-label="Vittara — início">
-            <img src={logoAsset.url} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-52 max-w-full object-contain sm:w-64" />
+            <img src={logoAsset.url} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-44 max-w-full object-contain sm:w-64" />
           </a>
-          <nav className="hidden items-center gap-8 text-[0.7rem] font-medium uppercase text-rose-deep lg:flex" aria-label="Navegação principal">
+          <nav className="hidden items-center gap-5 text-[0.7rem] font-medium uppercase text-rose-deep lg:flex" aria-label="Navegação principal">
             <a href="#sobre" className="transition-colors hover:text-primary">A Vittara</a>
             <a href="#tratamentos" className="transition-colors hover:text-primary">Tratamentos</a>
             <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
+            <Button variant="vittaraOutline" size="cta" asChild><a href={academyUrl} target="_blank" rel="noopener noreferrer"><GraduationCap /> Vittara Academy</a></Button>
             <Button variant="vittara" size="cta" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Agendar avaliação</a></Button>
           </nav>
+          <Button variant="vittaraOutline" size="sm" className="h-11 px-3 lg:hidden" asChild><a href={academyUrl} target="_blank" rel="noopener noreferrer" aria-label="Conhecer a Vittara Academy"><GraduationCap /> Academy</a></Button>
           <Button
             type="button"
             variant="ghost"
@@ -141,7 +143,7 @@ function Index() {
           </Button>
         </div>
         {isMenuOpen && (
-          <div id="menu-mobile" className="fixed inset-x-0 bottom-0 top-20 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+          <div id="menu-mobile" className="fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] sm:top-24 sm:h-[calc(100dvh-6rem)] lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navegação">
             <button type="button" className="absolute inset-0 bg-rose-deep/20 backdrop-blur-sm" aria-label="Fechar menu" onClick={closeMenu} />
             <nav className="relative border-t border-border bg-card px-5 pb-7 pt-3 shadow-[var(--shadow-soft)]" aria-label="Navegação móvel">
               <a href="#sobre" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">A Vittara</a>
