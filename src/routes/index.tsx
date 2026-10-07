@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/vittara-hero.jpg";
 import pdrnImage from "@/assets/vittara-pdrn.jpg";
 import naturalImage from "@/assets/vittara-natural.jpg";
-import logoAsset from "@/assets/vittara-logo.jpg.asset.json";
+import logoAsset from "@/assets/vittara-header-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,7 +119,7 @@ function Index() {
       >
         <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 sm:h-24 sm:px-8">
           <a href="#inicio" className="flex min-w-0 items-center" aria-label="Vittara — início">
-            <img src={logoAsset.url} alt="Vittara Estética Avançada" className="h-11 w-auto max-w-48 object-contain mix-blend-multiply sm:h-12 sm:max-w-56" />
+            <img src={logoAsset.url} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-52 max-w-full object-contain sm:w-64" />
           </a>
           <nav className="hidden items-center gap-8 text-[0.7rem] font-medium uppercase text-rose-deep lg:flex" aria-label="Navegação principal">
             <a href="#sobre" className="transition-colors hover:text-primary">A Vittara</a>
