@@ -119,7 +119,7 @@ function Index() {
       >
         <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 px-5 sm:h-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto]">
           <a href="#inicio" className="flex min-w-0 items-center" aria-label="Vittara — início">
-            <img src={logoAsset.url} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-44 max-w-full object-contain sm:w-64" />
+            <img src={new URL(logoAsset.url, "https://vittaraclinic.lovable.app").href} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-44 max-w-full object-contain sm:w-64" />
           </a>
           <nav className="hidden items-center gap-5 text-[0.7rem] font-medium uppercase text-rose-deep lg:flex" aria-label="Navegação principal">
             <a href="#sobre" className="transition-colors hover:text-primary">A Vittara</a>
