@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import heroImage from "@/assets/vittara-hero.jpg";
 import pdrnImage from "@/assets/vittara-pdrn.jpg";
 import naturalImage from "@/assets/vittara-natural.jpg";
@@ -352,7 +353,7 @@ function Index() {
         </div>
       </footer>
 
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp" className="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-button)] transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><MessageCircle className="h-6 w-6" /></a>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp" className="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-button)] transition-transform hover:scale-105 sm:bottom-7 sm:right-7"><WhatsAppIcon className="h-7 w-7" /></a>
     </main>
   );
 }
