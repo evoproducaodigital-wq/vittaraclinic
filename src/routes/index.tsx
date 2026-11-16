@@ -28,12 +28,36 @@ import logoAsset from "@/assets/vittara-header-logo.png.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vittara Estética Avançada | Beleza com naturalidade" },
-      { name: "description", content: "Tratamentos estéticos personalizados para valorizar sua beleza com técnica, tecnologia e resultados naturais." },
-      { property: "og:title", content: "Vittara Estética Avançada" },
-      { property: "og:description", content: "Cuidado estético com técnica, sensibilidade e propósito." },
+      { title: "Estética Avançada em Porto Alegre | Vittara Clinic" },
+      { name: "description", content: "Na Vittara, em Porto Alegre, tratamentos estéticos personalizados com foco em naturalidade, cuidado e tecnologia. Agende sua avaliação." },
+      { property: "og:title", content: "Estética Avançada em Porto Alegre | Vittara Clinic" },
+      { property: "og:description", content: "Tratamentos estéticos personalizados em Porto Alegre, com foco em naturalidade, cuidado e tecnologia." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://vittaraclinic.lovable.app/" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://vittaraclinic.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HealthAndBeautyBusiness",
+          name: "Vittara Estética Avançada",
+          url: "https://vittaraclinic.lovable.app/",
+          telephone: "+55-51-99705-1276",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Av. Dr. Nilo Peçanha, 1851, Loja 1",
+            addressLocality: "Porto Alegre",
+            addressRegion: "RS",
+            postalCode: "91330-000",
+            addressCountry: "BR",
+          },
+          sameAs: ["https://www.instagram.com/vittara.clinic/"],
+        }),
+      },
     ],
   }),
   component: Index,
