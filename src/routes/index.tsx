@@ -181,7 +181,48 @@ function Index() {
         )}
       </header>
 
-      <section id="inicio" className="relative min-h-[760px] overflow-hidden bg-rose-wash pt-24 lg:min-h-[820px]">
+      <div id="inicio" className="scroll-mt-20 sm:scroll-mt-24">
+            <section id="black-vittara" aria-labelledby="black-vittara-title" className="relative scroll-mt-20 overflow-hidden bg-noir pt-20 sm:pt-24 text-noir-foreground sm:scroll-mt-24">
+              <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[54%]">
+                <img src={blackVittaraImage} alt="Mulher com pele iluminada em fundo escuro, com luz cobre e pétalas claras" width={1536} height={1024} loading="lazy" className="h-full w-full object-cover object-[70%_34%] lg:object-[72%_50%]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-noir/25 via-transparent to-noir lg:hidden" />
+                <div className="absolute inset-0 hidden bg-gradient-to-r from-noir via-noir/70 to-transparent lg:block lg:from-noir lg:via-noir/25" />
+              </div>
+              <div className="relative z-10 mx-auto flex max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[640px]">
+                <div className="max-w-2xl">
+                  <p className="flex flex-wrap items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    <span className="flex items-center gap-2 rounded-full border border-gold/45 px-3 py-1.5">
+                      <span className="relative flex h-2 w-2 items-center justify-center">
+                        <span className="absolute h-2 w-2 animate-ping rounded-full bg-destructive opacity-70" />
+                        <span className="relative h-2 w-2 rounded-full bg-destructive" />
+                      </span>
+                      Ao vivo
+                    </span>
+                    Instagram @vittara.clinic
+                  </p>
+                  <h2 id="black-vittara-title" className="mt-7 font-display text-6xl leading-[0.92] font-medium sm:text-7xl lg:text-8xl">
+                    Black <em className="font-normal text-gold">Vittara</em>
+                  </h2>
+                  <div className="mt-9 flex items-center gap-6">
+                    <div className="grid h-24 w-24 shrink-0 place-items-center gap-1 rounded-full border border-gold/40 bg-noir-soft/80 text-center">
+                      <span className="text-[0.52rem] font-semibold uppercase tracking-[0.22em] text-noir-muted">Dia</span>
+                      <span className="font-display text-4xl leading-none text-gold">24</span>
+                    </div>
+                    <p className="max-w-sm text-sm leading-7 text-noir-foreground/85">
+                      Uma live especial da Vittara, ao vivo no nosso Instagram, para apresentar a campanha Black Vittara.
+                    </p>
+                  </div>
+                  <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                    <Button variant="vittara" size="cta" asChild><a href={instagramUrl} target="_blank" rel="noopener noreferrer"><Instagram /> Assistir no Instagram</a></Button>
+                    <Button variant="vittaraOutline" size="cta" className="border-noir-border text-noir-foreground hover:border-gold hover:bg-gold/10 hover:text-gold" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Tirar dúvidas no WhatsApp</a></Button>
+                  </div>
+                  <p className="mt-6 pr-16 text-xs leading-5 text-noir-muted sm:pr-0">A participação é pelo Instagram @vittara.clinic. Cada indicação depende de avaliação individualizada.</p>
+                </div>
+              </div>
+            </section>
+      </div>
+
+      <section className="relative min-h-[760px] overflow-hidden bg-rose-wash lg:min-h-[820px]">
         <div className="absolute inset-y-0 right-0 w-full lg:w-[54%]">
           <img src={heroImage} alt="Mulher com pele natural e iluminada" width={1280} height={1536} className="h-full w-full object-cover object-[52%_28%]" fetchPriority="high" />
           <div className="absolute inset-0 bg-gradient-to-r from-rose-wash via-rose-wash/75 to-transparent lg:from-rose-wash lg:via-rose-wash/10" />
@@ -201,45 +242,6 @@ function Index() {
             <div className="mt-8 grid max-w-2xl gap-x-5 gap-y-2 text-[0.61rem] font-medium uppercase text-rose-deep/75 sm:flex sm:flex-wrap sm:text-[0.64rem]">
               {['Atendimento personalizado', 'Estética avançada', 'Resultados naturais'].map((item) => <span key={item} className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" />{item}</span>)}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="black-vittara" aria-labelledby="black-vittara-title" className="relative scroll-mt-20 overflow-hidden bg-noir text-noir-foreground sm:scroll-mt-24">
-        <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[54%]">
-          <img src={blackVittaraImage} alt="Mulher com pele iluminada em fundo escuro, com luz cobre e pétalas claras" width={1536} height={1024} loading="lazy" className="h-full w-full object-cover object-[70%_34%] lg:object-[72%_50%]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-noir/25 via-transparent to-noir lg:hidden" />
-          <div className="absolute inset-0 hidden bg-gradient-to-r from-noir via-noir/70 to-transparent lg:block lg:from-noir lg:via-noir/25" />
-        </div>
-        <div className="relative z-10 mx-auto flex max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[640px]">
-          <div className="max-w-2xl">
-            <p className="flex flex-wrap items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-gold">
-              <span className="flex items-center gap-2 rounded-full border border-gold/45 px-3 py-1.5">
-                <span className="relative flex h-2 w-2 items-center justify-center">
-                  <span className="absolute h-2 w-2 animate-ping rounded-full bg-destructive opacity-70" />
-                  <span className="relative h-2 w-2 rounded-full bg-destructive" />
-                </span>
-                Ao vivo
-              </span>
-              Instagram @vittara.clinic
-            </p>
-            <h2 id="black-vittara-title" className="mt-7 font-display text-6xl leading-[0.92] font-medium sm:text-7xl lg:text-8xl">
-              Black <em className="font-normal text-gold">Vittara</em>
-            </h2>
-            <div className="mt-9 flex items-center gap-6">
-              <div className="grid h-24 w-24 shrink-0 place-items-center gap-1 rounded-full border border-gold/40 bg-noir-soft/80 text-center">
-                <span className="text-[0.52rem] font-semibold uppercase tracking-[0.22em] text-noir-muted">Dia</span>
-                <span className="font-display text-4xl leading-none text-gold">24</span>
-              </div>
-              <p className="max-w-sm text-sm leading-7 text-noir-foreground/85">
-                Uma live especial da Vittara, ao vivo no nosso Instagram, para apresentar a campanha Black Vittara.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Button variant="vittara" size="cta" asChild><a href={instagramUrl} target="_blank" rel="noopener noreferrer"><Instagram /> Assistir no Instagram</a></Button>
-              <Button variant="vittaraOutline" size="cta" className="border-noir-border text-noir-foreground hover:border-gold hover:bg-gold/10 hover:text-gold" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Tirar dúvidas no WhatsApp</a></Button>
-            </div>
-            <p className="mt-6 text-xs leading-5 text-noir-muted">A participação é pelo Instagram @vittara.clinic. Cada indicação depende de avaliação individualizada.</p>
           </div>
         </div>
       </section>
