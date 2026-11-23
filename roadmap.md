@@ -5,3 +5,6 @@
 - [x] Add Instagram, phone and address with location link.
 - [x] Add Vittara Academy call to action.
 - [x] Verify links and page display.
+
+# Black Vittara banner
+- [x] Add a home banner for the BLACK VITTARA live on Instagram, day 24, no month or hour shown.

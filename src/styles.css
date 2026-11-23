@@ -96,6 +96,11 @@
   --whatsapp: oklch(0.761 0.2015 149.74);
   --whatsapp-hover: oklch(0.6426 0.1686 149.91);
   --whatsapp-foreground: oklch(1 0 0);
+  --noir: oklch(0.17 0.012 45);
+  --noir-soft: oklch(0.25 0.014 45);
+  --noir-foreground: oklch(0.96 0.012 72);
+  --noir-muted: oklch(0.79 0.022 62);
+  --noir-border: oklch(0.36 0.022 50);
   --shadow-soft: 0 20px 60px color-mix(in oklab, var(--rose-deep) 10%, transparent);
   --shadow-button: 0 9px 25px color-mix(in oklab, var(--primary) 24%, transparent);
   --shadow-whatsapp: 0 9px 25px color-mix(in oklab, var(--whatsapp) 34%, transparent);
@@ -138,6 +143,11 @@
   --whatsapp: oklch(0.761 0.2015 149.74);
   --whatsapp-hover: oklch(0.6426 0.1686 149.91);
   --whatsapp-foreground: oklch(1 0 0);
+  --noir: oklch(0.17 0.012 45);
+  --noir-soft: oklch(0.25 0.014 45);
+  --noir-foreground: oklch(0.96 0.012 72);
+  --noir-muted: oklch(0.79 0.022 62);
+  --noir-border: oklch(0.36 0.022 50);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -181,6 +191,11 @@
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-hover: var(--whatsapp-hover);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-noir: var(--noir);
+  --color-noir-soft: var(--noir-soft);
+  --color-noir-foreground: var(--noir-foreground);
+  --color-noir-muted: var(--noir-muted);
+  --color-noir-border: var(--noir-border);
 }
 
 @utility paper-texture {
