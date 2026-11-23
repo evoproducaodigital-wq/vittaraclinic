@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { treatments } from "@/lib/treatments";
 import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
@@ -71,16 +72,6 @@ const academyUrl = "http://vittaraacademy.com.br/";
 const clinicAddress = "Dr. Nilo Peçanha, 1851 - Lj 1 - Boa Vista, Porto Alegre - RS, 91330-000";
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(clinicAddress)}`;
 
-const treatments = [
-  ["Botox", "Suaviza linhas de expressão e ajuda a prevenir marcas profundas."],
-  ["Preenchimentos", "Devolve volume, proporção e contorno com naturalidade."],
-  ["Bioestimuladores de colágeno", "Estimula firmeza, sustentação e qualidade da pele."],
-  ["Skinboosters", "Promove hidratação profunda, viço e melhora da textura."],
-  ["Ultraformer", "Atua na flacidez, no contorno facial e no estímulo de colágeno."],
-  ["Laser CO₂", "Auxilia na renovação, textura, manchas e rejuvenescimento da pele."],
-  ["Protocolo Coreano com PDRN", "Favorece regeneração, luminosidade e recuperação da pele."],
-  ["Tricologia", "Cuidado personalizado para força capilar e saúde do couro cabeludo."],
-];
 
 const differences = [
   { icon: ScanFace, title: "Avaliação individualizada", text: "Cada tratamento começa com escuta, análise e planejamento." },
@@ -279,12 +270,14 @@ function Index() {
             <p className="max-w-sm text-sm leading-7 text-muted-foreground">Protocolos escolhidos a partir de uma avaliação cuidadosa, respeitando sua individualidade e seus objetivos.</p>
           </div>
           <div className="mt-14 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-            {treatments.map(([title, text], index) => (
-              <article key={title} className="group flex min-h-72 flex-col border-b border-r border-border bg-background p-7 transition-colors duration-300 hover:bg-rose-wash/40">
-                <span className="text-xs text-primary">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-8 text-2xl leading-tight text-rose-deep">{title}</h3>
-                <p className="mt-4 flex-1 text-sm leading-6 text-muted-foreground">{text}</p>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label={`Saiba mais sobre ${title} pelo WhatsApp`} className="mt-7 flex items-center gap-2 text-[0.68rem] font-semibold uppercase text-primary">Saiba mais <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+            {treatments.map((t, index) => (
+              <article key={t.slug} className="group relative flex min-h-80 flex-col overflow-hidden border-b border-r border-border p-7">
+                <img src={t.gallery[0]} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-noir/90 via-noir/55 to-noir/20" />
+                <span className="relative text-xs text-noir-foreground">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="relative mt-8 text-2xl leading-tight text-noir-foreground">{t.title}</h3>
+                <p className="relative mt-4 flex-1 text-sm leading-6 text-noir-foreground/90">{t.short}</p>
+                <Link to="/tratamentos/$slug" params={{ slug: t.slug }} aria-label={`Saiba mais sobre ${t.title}`} className="relative mt-7 flex items-center gap-2 text-[0.68rem] font-semibold uppercase text-noir-foreground after:absolute after:inset-0 after:content-['']">Saiba mais <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
               </article>
             ))}
           </div>

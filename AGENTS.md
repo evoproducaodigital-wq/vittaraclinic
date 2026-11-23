@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep clinic contact destinations in shared constants in the landing page so appointment, inquiry, footer and floating links stay consistent.
+- Treatment details live in src/lib/treatments.ts and render via /tratamentos/$slug — one source for home cards and pages.
