@@ -1,9 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { getTreatment, treatments } from "@/lib/treatments";
-import logoAsset from "@/assets/vittara-header-logo.png.asset.json";
+import { SiteHeader } from "@/components/site-header";
 
 const whatsappUrl = "https://wa.me/5551997051276";
 
@@ -47,14 +47,9 @@ function TreatmentPage() {
   const msg = `${whatsappUrl}?text=${encodeURIComponent(`Olá! Quero saber mais sobre ${t.title}.`)}`;
   return (
     <main className="min-h-screen bg-background">
-      <header className="border-b border-border bg-background/95">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link to="/"><img src={logoAsset.url} alt="Vittara" className="h-7 w-auto sm:h-8" /></Link>
-          <Link to="/" hash="tratamentos" className="flex items-center gap-2 text-xs font-semibold uppercase text-primary"><ArrowLeft className="h-4 w-4" /> Tratamentos</Link>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
+      <section className="mx-auto grid max-w-7xl gap-12 px-5 pb-16 sm:px-8 sm:pb-24 lg:grid-cols-2 lg:items-center pt-32 sm:pt-40">
         <div>
           <p className="mb-4 text-[0.68rem] font-semibold uppercase text-primary">Tratamento</p>
           <h1 className="text-4xl leading-[1.08] font-medium text-rose-deep sm:text-6xl">{t.title}</h1>

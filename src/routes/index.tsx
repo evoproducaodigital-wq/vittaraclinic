@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { treatments } from "@/lib/treatments";
-import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -10,23 +9,21 @@ import {
   GraduationCap,
   Instagram,
   MapPin,
-  Menu,
   MessageCircle,
   Microscope,
   Phone,
   ScanFace,
   ShieldCheck,
   Sparkles,
-  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/site-header";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import heroImage from "@/assets/vittara-hero.jpg";
 import pdrnImage from "@/assets/vittara-pdrn.jpg";
 import naturalImage from "@/assets/vittara-natural.jpg";
 import blackVittaraImage from "@/assets/vittara-black.jpg";
-import logoAsset from "@/assets/vittara-header-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,80 +94,9 @@ function SectionTitle({ eyebrow, title, centered = false }: { eyebrow: string; t
 }
 
 function Index() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const updateHeader = () => setIsScrolled(window.scrollY > 24);
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
-    return () => window.removeEventListener("scroll", updateHeader);
-  }, []);
-
-  useEffect(() => {
-    if (!isMenuOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsMenuOpen(false);
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", closeOnEscape);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [isMenuOpen]);
-
-  const closeMenu = () => setIsMenuOpen(false);
-
   return (
     <main className="bg-background text-foreground">
-      <header
-        className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ${
-          isScrolled
-            ? "border-border/80 bg-card/95 shadow-[var(--shadow-header)]"
-            : "border-border/45 bg-card/75"
-        }`}
-      >
-        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 px-5 sm:h-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto]">
-          <a href="#inicio" className="flex min-w-0 items-center" aria-label="Vittara — início">
-            <img src={new URL(logoAsset.url, "https://vittaraclinic.lovable.app").href} alt="Vittara Estética Avançada" width={943} height={178} className="h-auto w-44 max-w-full object-contain sm:w-64" />
-          </a>
-          <nav className="hidden items-center gap-5 text-[0.7rem] font-medium uppercase text-rose-deep lg:flex" aria-label="Navegação principal">
-            <a href="#sobre" className="transition-colors hover:text-primary">A Vittara</a>
-            <a href="#tratamentos" className="transition-colors hover:text-primary">Tratamentos</a>
-            <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
-            <Button variant="vittaraOutline" size="cta" asChild><a href={academyUrl} target="_blank" rel="noopener noreferrer"><GraduationCap /> Vittara Academy</a></Button>
-            <Button variant="vittara" size="cta" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Agendar avaliação</a></Button>
-          </nav>
-          <Button variant="vittaraOutline" size="sm" className="h-11 px-3 lg:hidden" asChild><a href={academyUrl} target="_blank" rel="noopener noreferrer" aria-label="Conhecer a Vittara Academy"><GraduationCap /> Academy</a></Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-11 w-11 shrink-0 rounded-full border border-primary/35 text-primary hover:bg-muted lg:hidden"
-            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="menu-mobile"
-            onClick={() => setIsMenuOpen((open) => !open)}
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
-        {isMenuOpen && (
-          <div id="menu-mobile" className="fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] sm:top-24 sm:h-[calc(100dvh-6rem)] lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navegação">
-            <button type="button" className="absolute inset-0 bg-rose-deep/20 backdrop-blur-sm" aria-label="Fechar menu" onClick={closeMenu} />
-            <nav className="relative border-t border-border bg-card px-5 pb-7 pt-3 shadow-[var(--shadow-soft)]" aria-label="Navegação móvel">
-              <a href="#sobre" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">A Vittara</a>
-              <a href="#tratamentos" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Tratamentos</a>
-              <a href="#metodo" onClick={closeMenu} className="flex min-h-14 items-center border-b border-border/70 text-base font-medium text-rose-deep">Método Vittara</a>
-              <Button variant="vittara" size="cta" className="mt-5 w-full" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Agendar avaliação <ArrowRight /></a></Button>
-            </nav>
-          </div>
-        )}
-      </header>
+      <SiteHeader />
 
       <div id="inicio" className="scroll-mt-20 sm:scroll-mt-24">
             <section id="black-vittara" aria-labelledby="black-vittara-title" className="relative scroll-mt-20 overflow-hidden bg-noir pt-20 sm:pt-24 text-noir-foreground sm:scroll-mt-24">
